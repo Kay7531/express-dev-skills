@@ -1,4 +1,4 @@
-import { skills } from "../data/skill-data.js"
+
 import { Skill } from "../models/skills.js"
 
 function index(req, res) {
@@ -15,7 +15,7 @@ function index(req, res) {
   }
 
 function newSkill(req, res) {
-    res.render('skill/new')
+    res.render('skills/new')
 }
   
   export {
