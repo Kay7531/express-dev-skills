@@ -34,9 +34,9 @@ function create(req, res) {
 
   function show(req, res) {
     Skill.findById(req.params.id)
-    .then(show => {
+    .then(skill => {
         res.render('skills/show', {
-            show: show
+            skill: skill
         })
     })
     .catch(error => {
