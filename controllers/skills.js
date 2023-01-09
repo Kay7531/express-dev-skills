@@ -55,11 +55,41 @@ function create(req, res) {
         res.redirect('/skills')
     })
   }
-  
+
+  function edit (req, res) {
+    // find skill by id
+    Skill.findById(req.params.id)
+    .then(skill => {
+    //render view passing in skill
+        res.render('skills/edit', {
+            skill: skill
+        })
+    })
+  }  
+
+  function update(req, res) {
+    //handle checkbox logic
+    req.body.acquired = !!req.body.acquired
+    //find skill by id and update
+    Skill.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then(skill => {
+        //redirect back to show view
+        red.redirect(`/skills/${skill._id}`)
+    })
+    .catch(error => {
+        console.log(error)
+        res.redirect('/skills')
+    })
+
+  }
+
+
   export {
       index,
       show,
       newSkill as new,
       create,
-      deleteSkill as delete
+      deleteSkill as delete, 
+      edit, 
+      update
   }
